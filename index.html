@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>PL Guesser – Daily Premier League Player Guessing Game</title>
+
+<meta name="description" content="Play PL Guesser, the best daily Premier League player guessing game. Guess the mystery football player in 8 tries with clues. New puzzle every day!"/>
+<meta name="keywords" content="Premier League quiz, football guessing game, soccer quiz, guess the player, daily football game"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://dailykickoff.github.io/" />
+
+<!-- Google Verification -->
+<meta name="google-site-verification" content="zntJGmdguYPk1XXJ5t8pzIXwpKdKN6Mj7XakKqBuHiQ" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="PL Guesser – Daily Football Guessing Game"/>
+<meta property="og:description" content="Guess the Premier League player in 8 tries. New challenge every day!"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://dailykickoff.github.io/"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": "PL Guesser",
+  "description": "Daily Premier League player guessing game.",
+  "url": "https://dailykickoff.github.io/"
+}
+</script>
+
+<style>
+body{font-family:'DM Sans',sans-serif;background:#f5f3f0;color:#1a1a1a;margin:0}
+#app{max-width:640px;margin:auto;padding:20px}
+.logo{font-family:'Bebas Neue';font-size:36px}
+.subtitle{font-size:13px;color:#666;margin-bottom:15px}
+input,button{padding:10px;border-radius:8px;border:1px solid #ccc}
+button{background:#37003c;color:#fff;border:none;cursor:pointer}
+.result-box{margin-top:20px;padding:20px;background:#fff;border-radius:10px}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+  <div class="logo">⚽ PLGuesser</div>
+  <div class="subtitle">Guess today's Premier League player</div>
+
+  <p id="clue"></p>
+
+  <input id="input" placeholder="Type player name"/>
+  <button onclick="guess()">Guess</button>
+
+  <div id="result"></div>
+
+  <!-- SEO CONTENT -->
+  <section style="margin-top:40px">
+    <h1>Daily Premier League Player Guessing Game</h1>
+    <p>
+      PL Guesser is a daily football quiz where you guess a mystery Premier League player.
+      Use clues like age, club, and number to find the answer.
+    </p>
+
+    <h2>How to Play</h2>
+    <ul>
+      <li>Enter a player name</li>
+      <li>Use clues</li>
+      <li>You have 8 tries</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+const players = [
+{name:"Mohamed Salah",club:"Liverpool",number:11},
+{name:"Erling Haaland",club:"Man City",number:9},
+{name:"Bukayo Saka",club:"Arsenal",number:7},
+{name:"Phil Foden",club:"Man City",number:47}
+];
+
+const target = players[Math.floor(Date.now()/86400000)%players.length];
+
+document.getElementById("clue").innerText =
+"This player wears number " + target.number;
+
+let tries = 0;
+
+function guess(){
+  const val = document.getElementById("input").value;
+  tries++;
+
+  if(val.toLowerCase() === target.name.toLowerCase()){
+    document.getElementById("result").innerHTML =
+    "<div class='result-box'>Correct! 🎉<br>Tries: "+tries+"</div>";
+  } else {
+    document.getElementById("result").innerHTML =
+    "<div class='result-box'>Wrong ❌ Try again</div>";
+  }
+}
+</script>
+
+</body>
+</html>
